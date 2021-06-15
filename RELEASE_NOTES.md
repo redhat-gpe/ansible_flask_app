@@ -6,4 +6,5 @@
   * Enhanced `hosts` to use GUID and `lookup` filter
 * Simplified logic in first (app server) smoketest e.g. `hosts: app1`
 * Changed unnecessary `become` privilege escalation in smoketest plays
-* Moved the `flask` users password to a var instead of hard coded
+* Moved the `flask` user password to a var instead of hard coded
+* Final smoketest to frontend1 now runs from localhost
