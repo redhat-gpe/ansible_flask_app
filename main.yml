@@ -49,8 +49,8 @@
         path: "{{ postgres_10_data_dir }}/PG_VERSION"
       register: r_postgres_init_dir_state
 
-    - when: not r_postgres_init_dir_state.stat.exists
-      name: Run Postgres initdb to initialize if postgres not initialized
+    - name: Run Postgres initdb to initialize if postgres not initialized
+      when: not r_postgres_init_dir_state.stat.exists
       command: "{{ postgres_10_bin_path }}/postgresql-10-setup initdb"
       notify: restart_postgres
 
@@ -142,7 +142,7 @@
 
   tasks:
 
-    - name: Create flask user
+    - name: "Create flask user: {{ flask_user }}"
       user:
         name: "{{ flask_user }}"
         state: present  
@@ -272,7 +272,7 @@
         - smoketest
 
 - name: End to end smoke tests
-  hosts: localhost #app_servers
+  hosts: localhost
   become: false
   gather_facts: false
   tags:
